@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes>
+  <vType id="type1" length="5" accel="5" decel="10" />
+  <route id="f_1" edges="n7_n1 n1_n2 n2_n3 n3_n4 n4_n5 n5_n6 n6_n8" />
+  <route id="f_2" edges="n8_n6 n6_n5 n5_n4 n4_n3 n3_n2 n2_n1 n1_n7" />
+  <route id="f_3" edges="n9_n1 n1_n15" />
+  <route id="f_4" edges="n10_n2 n2_n16" />
+  <route id="f_5" edges="n11_n3 n3_n17" />
+  <route id="f_6" edges="n12_n4 n4_n18" />
+  <route id="f_7" edges="n13_n5 n5_n19" />
+  <route id="f_8" edges="n14_n6 n6_n20" />
+  <route id="f_9" edges="n9_n1 n1_n2 n2_n3 n3_n4 n4_n5 n5_n6 n6_n8" />
+  <route id="f_10" edges="n10_n2 n2_n3 n3_n4 n4_n5 n5_n6 n6_n8" />
+  <route id="f_11" edges="n11_n3 n3_n4 n4_n5 n5_n6 n6_n8" />
+  <route id="f_12" edges="n12_n4 n4_n5 n5_n6 n6_n8" />
+  <route id="f_13" edges="n13_n5 n5_n6 n6_n8" />
+  <route id="f_14" edges="n14_n6 n6_n8" />
+  <flow id="f_0_1" route="f_1" type="type1" begin="0" end="1200" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_0_2" route="f_2" type="type1" begin="0" end="1200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_0_3" route="f_3" type="type1" begin="0" end="1200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_0_4" route="f_4" type="type1" begin="0" end="1200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_0_5" route="f_5" type="type1" begin="0" end="1200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_0_6" route="f_6" type="type1" begin="0" end="1200" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_0_7" route="f_7" type="type1" begin="0" end="1200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_0_8" route="f_8" type="type1" begin="0" end="1200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_1_1" route="f_1" type="type1" begin="1200" end="4800" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_1_2" route="f_2" type="type1" begin="1200" end="4800" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_1_3" route="f_3" type="type1" begin="1200" end="4800" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_1_4" route="f_4" type="type1" begin="1200" end="4800" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_1_5" route="f_5" type="type1" begin="1200" end="4800" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_1_6" route="f_6" type="type1" begin="1200" end="4800" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_1_7" route="f_7" type="type1" begin="1200" end="4800" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_1_8" route="f_8" type="type1" begin="1200" end="4800" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_2_1" route="f_1" type="type1" begin="4800" end="8400" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_2_2" route="f_2" type="type1" begin="4800" end="8400" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_2_3" route="f_3" type="type1" begin="4800" end="8400" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_2_4" route="f_4" type="type1" begin="4800" end="8400" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_2_5" route="f_5" type="type1" begin="4800" end="8400" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_2_6" route="f_6" type="type1" begin="4800" end="8400" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_2_7" route="f_7" type="type1" begin="4800" end="8400" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_2_8" route="f_8" type="type1" begin="4800" end="8400" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_3_1" route="f_1" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="1200" />
+  <flow id="f_3_2" route="f_2" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_3_3" route="f_3" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_3_4" route="f_4" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="800" />
+  <flow id="f_3_5" route="f_5" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_3_6" route="f_6" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="800" />
+  <flow id="f_3_7" route="f_7" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_3_8" route="f_8" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="1000" />
+  <flow id="f_3_9" route="f_9" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_3_10" route="f_10" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="150" />
+  <flow id="f_3_11" route="f_11" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="100" />
+  <flow id="f_3_12" route="f_12" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_3_13" route="f_13" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_3_14" route="f_14" type="type1" begin="8400" end="12000" departPos="random_free" vehsPerHour="100" />
+  <flow id="f_4_1" route="f_1" type="type1" begin="12000" end="15600" departPos="random_free" vehsPerHour="900" />
+  <flow id="f_4_2" route="f_2" type="type1" begin="12000" end="15600" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_4_3" route="f_3" type="type1" begin="12000" end="15600" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_4_4" route="f_4" type="type1" begin="12000" end="15600" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_4_5" route="f_5" type="type1" begin="12000" end="15600" departPos="random_free" vehsPerHour="800" />
+  <flow id="f_4_6" route="f_6" type="type1" begin="12000" end="15600" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_4_7" route="f_7" type="type1" begin="12000" end="15600" departPos="random_free" vehsPerHour="550" />
+  <flow id="f_4_8" route="f_8" type="type1" begin="12000" end="15600" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_5_1" route="f_1" type="type1" begin="15600" end="19200" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_5_2" route="f_2" type="type1" begin="15600" end="19200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_5_3" route="f_3" type="type1" begin="15600" end="19200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_5_4" route="f_4" type="type1" begin="15600" end="19200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_5_5" route="f_5" type="type1" begin="15600" end="19200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_5_6" route="f_6" type="type1" begin="15600" end="19200" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_5_7" route="f_7" type="type1" begin="15600" end="19200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_5_8" route="f_8" type="type1" begin="15600" end="19200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_6_1" route="f_1" type="type1" begin="19200" end="22800" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_6_2" route="f_2" type="type1" begin="19200" end="22800" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_6_3" route="f_3" type="type1" begin="19200" end="22800" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_6_4" route="f_4" type="type1" begin="19200" end="22800" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_6_5" route="f_5" type="type1" begin="19200" end="22800" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_6_6" route="f_6" type="type1" begin="19200" end="22800" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_6_7" route="f_7" type="type1" begin="19200" end="22800" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_6_8" route="f_8" type="type1" begin="19200" end="22800" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_7_1" route="f_1" type="type1" begin="22800" end="26400" departPos="random_free" vehsPerHour="900" />
+  <flow id="f_7_2" route="f_2" type="type1" begin="22800" end="26400" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_7_3" route="f_3" type="type1" begin="22800" end="26400" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_7_4" route="f_4" type="type1" begin="22800" end="26400" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_7_5" route="f_5" type="type1" begin="22800" end="26400" departPos="random_free" vehsPerHour="800" />
+  <flow id="f_7_6" route="f_6" type="type1" begin="22800" end="26400" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_7_7" route="f_7" type="type1" begin="22800" end="26400" departPos="random_free" vehsPerHour="550" />
+  <flow id="f_7_8" route="f_8" type="type1" begin="22800" end="26400" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_8_1" route="f_1" type="type1" begin="26400" end="30000" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_8_2" route="f_2" type="type1" begin="26400" end="30000" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_8_3" route="f_3" type="type1" begin="26400" end="30000" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_8_4" route="f_4" type="type1" begin="26400" end="30000" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_8_5" route="f_5" type="type1" begin="26400" end="30000" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_8_6" route="f_6" type="type1" begin="26400" end="30000" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_8_7" route="f_7" type="type1" begin="26400" end="30000" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_8_8" route="f_8" type="type1" begin="26400" end="30000" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_9_1" route="f_1" type="type1" begin="30000" end="33600" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_9_2" route="f_2" type="type1" begin="30000" end="33600" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_9_3" route="f_3" type="type1" begin="30000" end="33600" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_9_4" route="f_4" type="type1" begin="30000" end="33600" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_9_5" route="f_5" type="type1" begin="30000" end="33600" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_9_6" route="f_6" type="type1" begin="30000" end="33600" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_9_7" route="f_7" type="type1" begin="30000" end="33600" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_9_8" route="f_8" type="type1" begin="30000" end="33600" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_10_1" route="f_1" type="type1" begin="33600" end="37200" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_10_2" route="f_2" type="type1" begin="33600" end="37200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_10_3" route="f_3" type="type1" begin="33600" end="37200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_10_4" route="f_4" type="type1" begin="33600" end="37200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_10_5" route="f_5" type="type1" begin="33600" end="37200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_10_6" route="f_6" type="type1" begin="33600" end="37200" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_10_7" route="f_7" type="type1" begin="33600" end="37200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_10_8" route="f_8" type="type1" begin="33600" end="37200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_11_1" route="f_1" type="type1" begin="37200" end="40800" departPos="random_free" vehsPerHour="900" />
+  <flow id="f_11_2" route="f_2" type="type1" begin="37200" end="40800" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_11_3" route="f_3" type="type1" begin="37200" end="40800" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_11_4" route="f_4" type="type1" begin="37200" end="40800" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_11_5" route="f_5" type="type1" begin="37200" end="40800" departPos="random_free" vehsPerHour="800" />
+  <flow id="f_11_6" route="f_6" type="type1" begin="37200" end="40800" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_11_7" route="f_7" type="type1" begin="37200" end="40800" departPos="random_free" vehsPerHour="550" />
+  <flow id="f_11_8" route="f_8" type="type1" begin="37200" end="40800" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_12_1" route="f_1" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="1200" />
+  <flow id="f_12_2" route="f_2" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_12_3" route="f_3" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_12_4" route="f_4" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="800" />
+  <flow id="f_12_5" route="f_5" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_12_6" route="f_6" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="800" />
+  <flow id="f_12_7" route="f_7" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_12_8" route="f_8" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="1000" />
+  <flow id="f_12_9" route="f_9" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_12_10" route="f_10" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="150" />
+  <flow id="f_12_11" route="f_11" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="100" />
+  <flow id="f_12_12" route="f_12" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_12_13" route="f_13" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_12_14" route="f_14" type="type1" begin="40800" end="44400" departPos="random_free" vehsPerHour="100" />
+  <flow id="f_13_1" route="f_1" type="type1" begin="44400" end="48000" departPos="random_free" vehsPerHour="900" />
+  <flow id="f_13_2" route="f_2" type="type1" begin="44400" end="48000" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_13_3" route="f_3" type="type1" begin="44400" end="48000" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_13_4" route="f_4" type="type1" begin="44400" end="48000" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_13_5" route="f_5" type="type1" begin="44400" end="48000" departPos="random_free" vehsPerHour="800" />
+  <flow id="f_13_6" route="f_6" type="type1" begin="44400" end="48000" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_13_7" route="f_7" type="type1" begin="44400" end="48000" departPos="random_free" vehsPerHour="550" />
+  <flow id="f_13_8" route="f_8" type="type1" begin="44400" end="48000" departPos="random_free" vehsPerHour="700" />
+  <flow id="f_14_1" route="f_1" type="type1" begin="48000" end="51600" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_14_2" route="f_2" type="type1" begin="48000" end="51600" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_14_3" route="f_3" type="type1" begin="48000" end="51600" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_14_4" route="f_4" type="type1" begin="48000" end="51600" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_14_5" route="f_5" type="type1" begin="48000" end="51600" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_14_6" route="f_6" type="type1" begin="48000" end="51600" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_14_7" route="f_7" type="type1" begin="48000" end="51600" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_14_8" route="f_8" type="type1" begin="48000" end="51600" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_15_1" route="f_1" type="type1" begin="51600" end="55200" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_15_2" route="f_2" type="type1" begin="51600" end="55200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_15_3" route="f_3" type="type1" begin="51600" end="55200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_15_4" route="f_4" type="type1" begin="51600" end="55200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_15_5" route="f_5" type="type1" begin="51600" end="55200" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_15_6" route="f_6" type="type1" begin="51600" end="55200" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_15_7" route="f_7" type="type1" begin="51600" end="55200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_15_8" route="f_8" type="type1" begin="51600" end="55200" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_16_1" route="f_1" type="type1" begin="55200" end="58800" departPos="random_free" vehsPerHour="600" />
+  <flow id="f_16_2" route="f_2" type="type1" begin="55200" end="58800" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_16_3" route="f_3" type="type1" begin="55200" end="58800" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_16_4" route="f_4" type="type1" begin="55200" end="58800" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_16_5" route="f_5" type="type1" begin="55200" end="58800" departPos="random_free" vehsPerHour="400" />
+  <flow id="f_16_6" route="f_6" type="type1" begin="55200" end="58800" departPos="random_free" vehsPerHour="200" />
+  <flow id="f_16_7" route="f_7" type="type1" begin="55200" end="58800" departPos="random_free" vehsPerHour="300" />
+  <flow id="f_16_8" route="f_8" type="type1" begin="55200" end="58800" departPos="random_free" vehsPerHour="300" />
+</routes>

@@ -1,0 +1,19 @@
+<routes>
+<vType id="type1" length="5" accel="5" decel="10"/>
+<route id="f_1" edges="n7_n1 n1_n2 n2_n3 n3_n4 n4_n5 n5_n6 n6_n8"/>
+<route id="f_2" edges="n8_n6 n6_n5 n5_n4 n4_n3 n3_n2 n2_n1 n1_n7"/>
+<route id="f_3" edges="n9_n1 n1_n15"/>
+<route id="f_4" edges="n10_n2 n2_n16"/>
+<route id="f_5" edges="n11_n3 n3_n17"/>
+<route id="f_6" edges="n12_n4 n4_n18"/>
+<route id="f_7" edges="n13_n5 n5_n19"/>
+<route id="f_8" edges="n14_n6 n6_n20"/>
+<flow id="f_1" route="f_1" departPos="random_free" begin="0" end="3600" vehsPerHour="600" type="type1"/>
+<flow id="f_2" route="f_2" departPos="random_free" begin="0" end="3600" vehsPerHour="400" type="type1"/>
+<flow id="f_3" route="f_3" departPos="random_free" begin="0" end="3600" vehsPerHour="400" type="type1"/>
+<flow id="f_4" route="f_4" departPos="random_free" begin="0" end="3600" vehsPerHour="300" type="type1"/>
+<flow id="f_5" route="f_5" departPos="random_free" begin="0" end="3600" vehsPerHour="400" type="type1"/>
+<flow id="f_6" route="f_6" departPos="random_free" begin="0" end="3600" vehsPerHour="200" type="type1"/>
+<flow id="f_7" route="f_7" departPos="random_free" begin="0" end="3600" vehsPerHour="300" type="type1"/>
+<flow id="f_8" route="f_8" departPos="random_free" begin="0" end="3600" vehsPerHour="300" type="type1"/>
+</routes>
