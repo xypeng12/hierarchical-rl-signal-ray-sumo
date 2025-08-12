@@ -105,36 +105,3 @@ def calculate_phi_i_t(q_branch_i, l_i_t, z, qs_i, q_out_i_t, g_i_t, f_i, g_i_min
         phi= g_i_t/2-g_i_minus_1_t/2+g_i_t_plus_1 + t_i * z-t_ci_t - q_branch_i/qs_i-1
 
     return phi
-'''
-# Applying scenarios to calculate phi_i_t
-    if t_si_t >= t_ci_t and t_ui_t != 0:
-        # Scenario 1.1
-        phi = t_i * z - g_i_t / 2 + g_i_minus_1_t / 2
-
-    elif t_si_t < t_ci_t and t_ui_t != 0:
-        # Scenario 1.2        
-        lower_bound = t_i * z - g_i_t / 2 + g_i_minus_1_t / 2
-        upper_bound = t_i * z - t_ci_t + g_i_t / 2 - g_i_minus_1_t / 2   
-        if lower_bound >= min_phi:
-            if lower_bound <= max_phi:
-                phi = lower_bound
-            else:
-                phi = max_phi
-        else: #lower_bound < min_phi:
-            if upper_bound >= min_phi:
-                phi = min_phi
-            else:
-                phi = min_phi
-        
-    elif t_si_t >= t_ci_t and t_ui_t == 0:
-        # Scenario 2.1
-        phi = ((1 / f_i) - 1) * t_si_t - t_ci_t / f_i + g_i_t / 2 - g_i_minus_1_t / 2 + t_i * z
-    else: #t_si_t < t_ci_t and t_ui_t == 0:
-        # Scenario 2.2
-        upper_bound=g_i_t / 2 - g_i_minus_1_t / 2 + t_i * z - t_ci_t
-        phi=(np.NaN,upper_bound)
-
-    phi=max(min_phi,min(phi,max_phi))
-
-    return phi
-'''
