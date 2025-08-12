@@ -32,16 +32,13 @@ def saturated_control_calculation(C, phi_set, g):
     return adjusted_g_range_list
 
 def adjust_ranges(g_range_list):
-    # 找出列表中的最小值
     min_value = float('inf')
     for sub_list in g_range_list:
         for range_pair in sub_list:
-            min_value = min(min_value, *range_pair)  # 展开 range_pair 并更新最小值
+            min_value = min(min_value, *range_pair)  
 
-    # 如果最小值小于0，计算其绝对值，否则设置增加量为0
     increment = abs(min_value) if min_value < 0 else 0
 
-    # 如果需要，增加每个元素
     if increment > 0:
         for sub_list in g_range_list:
             for range_pair in sub_list:
@@ -49,3 +46,4 @@ def adjust_ranges(g_range_list):
                 range_pair[1] += increment
 
     return g_range_list
+
