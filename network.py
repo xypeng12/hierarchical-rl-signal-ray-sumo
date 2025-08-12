@@ -84,7 +84,7 @@ class Connection:
         self.type=type
         self.tl=tl
         self.linkindex=linkindex
-        self.lanenum=1 #1 1/2 1/3...取决于有几个connection共用该lane
+        self.lanenum=1 
         self.throughput=0
 
 class Edge:
@@ -158,7 +158,6 @@ class Node:
 
         self.state_queue = []
         self.state_arrival = []
-        #self.state_coord = []
         self.state_related_node = []
         self.state_speed = []
 
@@ -193,7 +192,6 @@ class Node:
         all_lanes = [lane for lanes in self.lanes_by_movement.values() for lane in lanes]
 
         for lane in all_lanes:
-            # 队列长度
             halting_num = traci.lane.getLastStepHaltingNumber(lane)
             queues.append(halting_num)
 
@@ -217,7 +215,7 @@ class Node:
         self.state_main_line_queue = []
 
 
-        total_speed = []  # 用于 reward
+        total_speed = []  
         total_stops = 0
 
         for dir_, lanes in main_lanes.items():
@@ -828,5 +826,6 @@ class Network():
 
     def _terminate(self):
         traci.close()
+
 
 
