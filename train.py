@@ -55,9 +55,8 @@ def generate_parser():
 if __name__ == "__main__":
 
     parser = generate_parser()
-    cmd_args = parser.parse_args()  # 获取命令行默认参数
-
-    all_policies = ["low_level_IIC", "low_level_GWC"] #"high_level"
+    cmd_args = parser.parse_args()  
+    all_policies = ["low_level_IIC", "low_level_GWC"]
     low_level_policies = {"low_level_GWC", "low_level_SCC", "low_level_IIC"}
 
     for train_policy in all_policies:
@@ -173,3 +172,4 @@ if __name__ == "__main__":
 
 
         print(f"Checkpoint saved to: {checkpoint.checkpoint.path}")
+
