@@ -3,11 +3,6 @@ def get_movement_num():
 def ll_obs_space():
     movement_num = get_movement_num()
     state_num = movement_num * 7  # arrival, queue, speed neighbor's movement(4*12)
-    '''
-    max_saturated_n = 6
-    max_green_band_n = 6
-    state_num += max(2*max_saturated_n+3, 2*max_green_band_n+2)
-    '''
 
     return state_num
 
@@ -97,3 +92,4 @@ class SignalAgent:
 
         action = self.node.phase_names.index(phase)
         return action
+
