@@ -14,16 +14,13 @@ def coordinated_path_dict():
 def coordinated_paths_GWC():
     coordinated_paths_GWC = [{'type': 'green_band_control',
                             'path': ['n1', 'n2', 'n3', 'n4', 'n5', 'n6']}]
-                             #{'type': 'green_band_control',
-                             #'path': ['n1', 'n2', 'n3', 'n4', 'n5', 'n6']}]
+                            
     return coordinated_paths_GWC
 
 def coordinated_paths_SCC():
 
     coordinated_paths_SCC = [{'type': 'saturated_control','path': ['n1', 'n2', 'n3','n4', 'n5', 'n6']}]
 
-    #coordinated_paths_SCC = [{'type': 'saturated_control','path': ['n1', 'n2', 'n3', 'n4', 'n5', 'n6']}]
-                             #{'type': 'saturated_control','path': ['n1', 'n2', 'n3', 'n4', 'n5', 'n6']}]
     return coordinated_paths_SCC
 
 
@@ -49,7 +46,6 @@ class Coordinator:
         self.q_branch_min_ratio = 0.6
 
 
-        #self.time_length = 2000
         self.step_length = 1
 
     def load_coordinated_plans(self,coordinated_paths,cur_sec=0,duration = 3600):
@@ -187,53 +183,7 @@ class Coordinator:
 
 
 
-    '''
-    def update_coordinated_paths(self,coordinated_paths,cur_sec):
-        self.cur_sec = cur_sec
-        self.set_coordinated_plans(coordinated_paths=coordinated_paths,cur_sec=cur_sec)
-
-        coordinated_node_set = set()
-
-        for id in self.coordinated_plans:
-            coordinated_plan = self.coordinated_plans[id]
-            self.tl_type = coordinated_plan.type
-
-            self.coordinated_path = coordinated_plan.coordinated_path
-            self.coordinated_edges, self.coordinated_edges_opposite, self.nodepos = self.get_coordinated_information(
-                self.coordinated_path)
-
-            self.update_coordinated_nodes()
-
-            for node_id in self.coordinated_path:
-                coordinated_node_set.update([node_id])
-                node = self.tl_nodes[node_id]
-                node.tl_type = self.tl_type
-                node.average_arrival_rate()
-                node.coordinate_start_time = cur_sec
-                node.node_location =  self.coordinated_path.index(node_id)
-
-            if self.tl_type == 'green_band_control':
-                obs = self.set_green_band()
-                for node_id in self.coordinated_path:
-                    node = self.tl_nodes[node_id]
-                    node.state_coord = obs + [node.node_location]
-
-            elif self.tl_type == 'saturated_control':
-                duration = coordinated_plan.duration
-                obs = self.set_saturated_control(duration)
-                for node_id in self.coordinated_path:
-                    node = self.tl_nodes[node_id]
-                    node.state_coord = obs+[node.node_location]
-
-
-        for node_id in self.tl_nodes:
-            if node_id not in coordinated_node_set:
-                node = self.tl_nodes[node_id]
-                node.tl_type = 'isolated_control'
-                node.update_movement_info(default=True,all_nodes=self.nodes,all_edges=self.edges)
-                node.average_arrival_rate()
-    '''
-
+    
     def set_saturated_control(self,duration):
 
         n = len(self.coordinated_path)-1
@@ -346,17 +296,7 @@ class Coordinator:
 
         print('cycle', C)
 
-        '''
-        assert len(L) == len(t) == len(qs) == len(f) == len(l_initial) == len(g_min_list) == len(g_max_list) == len(
-            q_branch_max) == len(q_branch_min)
-
-        C_max = round(self.C_max / 3600, 2)
-        C_min = round(self.C_min/3600, 2)
-        duration = round(duration/3600, 2)
-        L = [l / 100 for l in L]
-
-        obs = L + t + l_initial + f + qs + g_max_list + g_min_list + q_branch_max + q_branch_min + [n, C_max, C_min, q_in_1, qs_1, self.stop_headway, duration]  #9n+8 obs
-        '''
+       
         q = []
         for node_id in self.coordinated_path:
             node = self.nodes[node_id]
@@ -423,12 +363,7 @@ class Coordinator:
             print('node', node_id, 'g_range', [[x[0], x[1]] for x in node.g_range])
 
         print('cycle', C)
-        '''
-        assert len(t)+1 == len(t_bar)+1 == len(g_min_l) == len(g_min_bar_l) == len(g_min_branch)
-        C_max = round(self.C_max / 3600, 2)
-        C_min = round(self.C_min/3600, 2)
-        obs = t + t_bar + g_min_l + g_min_bar_l + g_min_branch + [n, C_max, C_min]  # 5n + 1 obs
-        '''
+        
 
         obs = t + t_bar + [n]  # 2n+1
 
