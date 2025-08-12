@@ -42,7 +42,6 @@ def generate_parser():
         help="High-level policy chooses a new action every N low-level steps."
     )
 
-    # 每个 episode 的总持续时间（秒）
     parser.add_argument(
         "--episode-duration-sec",
         type=int,
@@ -172,4 +171,5 @@ if __name__ == "__main__":
 
 
         print(f"Checkpoint saved to: {checkpoint.checkpoint.path}")
+
 
