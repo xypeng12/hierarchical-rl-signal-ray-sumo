@@ -74,7 +74,6 @@ class HL_Controller:
         self.coordination_start_time = 0
 
     def action(self,action,cur_sec):
-        #新策略 input
         self.coordination_start_time = cur_sec
         self.active_action = action
 
@@ -124,22 +123,18 @@ class HL_Controller:
 
     def reset_state(self):
         self.state_main_line_queue = {node_id:[] for node_id in self.nodes}
-        #self.state_main_line_stop =  {node_id:[] for node_id in self.nodes}
-        #self.state_main_line_speed =  {node_id:[] for node_id in self.nodes}
+
         self.state_bar_main_line_queue = {node_id:[] for node_id in self.nodes}
-        #self.state_bar_main_line_stop =  {node_id:[] for node_id in self.nodes}
-        #self.state_bar_main_line_speed =  {node_id:[] for node_id in self.nodes}
+
 
 
     def update_state(self):
 
         for node_id,node in self.nodes.items():
             self.state_main_line_queue[node_id].append(node.state_main_line_queue[0])
-            #self.state_main_line_stop[node_id].append(node.state_main_line_stop[0])
-            #self.state_main_line_speed[node_id].append(node.state_main_line_speed[0])
+
             self.state_bar_main_line_queue[node_id].append(node.state_main_line_queue[1])
-            #self.state_bar_main_line_stop[node_id].append(node.state_main_line_stop[1])
-            #self.state_bar_main_line_speed[node_id].append(node.state_main_line_speed[1])
+
 
     def get_obs(self, cur_sec):
 
@@ -150,29 +145,14 @@ class HL_Controller:
         next_demand_level = self.demand_level[coord_step]
 
         main_line_queue = []
-        #main_line_stop = []
-        #main_line_speed = []
+
         bar_main_line_queue = []
-        #bar_main_line_stop = []
-        #bar_main_line_speed = []
 
         for node_id in self.nodes:
             main_line_queue.append(np.mean(self.state_main_line_queue[node_id]))
-            #main_line_stop.append(np.mean(self.state_main_line_stop[node_id]))
-            #main_line_speed.append(np.mean(self.state_main_line_speed[node_id]))
+
             bar_main_line_queue.append(np.mean(self.state_bar_main_line_queue[node_id]))
-            #bar_main_line_stop.append(np.mean(self.state_bar_main_line_stop[node_id]))
-            #bar_main_line_speed.append(np.mean(self.state_bar_main_line_speed[node_id]))
-        '''
-        # 计算每个指标的均值和标准差
-        obs = [next_demand_level] + \
-              [np.mean(main_line_queue), np.std(main_line_queue)] + \
-              [np.mean(bar_main_line_queue), np.std(bar_main_line_queue)] + \
-              [np.mean(main_line_stop), np.std(main_line_stop)] + \
-              [np.mean(bar_main_line_stop), np.std(bar_main_line_stop)] + \
-              [np.mean(main_line_speed), np.std(main_line_speed)] + \
-              [np.mean(bar_main_line_speed), np.std(bar_main_line_speed)]
-        '''
+
 
         obs = [next_demand_level] + main_line_queue + bar_main_line_queue # 1+2*6
         action_mask = [1] * self.action_space
@@ -182,7 +162,6 @@ class HL_Controller:
     def need_next_action(self, next_sec):
         if self.active_action is not None:
             if next_sec - self.coordination_start_time < self.coord_duration + self.measure_for_coordination_time:
-                # if not last for enough time
-                # stick to current action
                 return False
+
         return True
