@@ -458,8 +458,7 @@ class MyEnv(MultiAgentEnv):
         else:
             obs = {**signal_obs}
             reward = signal_reward
-            # for test!!!
-            # if self.cur_sec >= 2600:
+
             self.update_record(signal_action_dict, signal_obs, signal_reward,signal_record_infos)
 
 
@@ -518,7 +517,6 @@ class MyEnv(MultiAgentEnv):
 
 
     def save_record(self):
-        # 写入 step_data.csv
         if self.step_buffer:
             with open(self.step_log_path, "a", newline="") as f:
                 writer = csv.writer(f)
@@ -544,5 +542,6 @@ class MyEnv(MultiAgentEnv):
 
         with open(self.episode_log_path, "a", newline="") as f:
             csv.writer(f).writerow(row)
+
 
 
