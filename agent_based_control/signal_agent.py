@@ -12,7 +12,7 @@ def ll_obs_space():
     return state_num
 
 def ll_action_space():
-    phase_num = 8  # 动作与观察的维度
+    phase_num = 8 
     return phase_num
 
 class SignalAgent:
@@ -27,12 +27,7 @@ class SignalAgent:
         self.phases = None
         self.next_step_feasible_phases = None
         self.align_with_coordination = True
-        '''
-        self.penalty_phase_switch = 10  # 最大惩罚
-        self.prev_action = None
-        self.prev_action_start_time = 0
-        self.min_phase_duration = 10
-        '''
+
         self.coef_vehwait = 0.3
 
 
@@ -73,11 +68,7 @@ class SignalAgent:
             self.next_step_feasible_phases = self.node.coordinated_feasible_phases(next_sec)
             action_mask = [1 if name in self.next_step_feasible_phases else 0 for name in self.node.phase_names]
 
-        '''
-        max_lens = ll_obs_space()
-        assert len(cur_state) <= max_lens, f"[{self.node_id}] obs length {len(cur_state)} exceeds limit {max_lens}"
-        pad_state = cur_state + [0] * (max_lens-len(cur_state))
-        '''
+
         return cur_state, action_mask
 
     def get_reward(self):
@@ -106,10 +97,3 @@ class SignalAgent:
 
         action = self.node.phase_names.index(phase)
         return action
-
-
-    '''
-    def clip_reward(self,reward):
-        reward=reward/self.norm_reward
-        return np.clip(reward, -self.clip, self.clip)
-    '''
