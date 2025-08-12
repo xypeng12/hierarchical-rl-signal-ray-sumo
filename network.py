@@ -6,18 +6,9 @@ from agent_based_control.signal_agent import get_movement_num
 
 
 def check_band_coverage(g_range, g_bar_range, total_cycle_length=60, max_coverage_ratio=0.8):
-    """检查绿波区段是否覆盖过多时间，避免覆盖整个周期从而使 fallback 失效。
 
-    Args:
-        g_range (list of tuple): 主 green band 时间段 [(start, end), ...]
-        g_bar_range (list of tuple): 次级 green band 时间段 [(start, end), ...]
-        total_cycle_length (int): 总周期长度（秒）
-        max_coverage_ratio (float): 最大允许覆盖比例（例如 0.8 表示最多覆盖 80%）
-    """
-    # 合并所有区间
     combined_ranges = g_range + g_bar_range
 
-    # 构建一个周期时间轴数组，每秒是否被某个区间覆盖
     covered = [0] * total_cycle_length
 
     for start, end in combined_ranges:
@@ -52,13 +43,6 @@ def range_check_saturated(a, range_list, step_length):
         return False, False, -1
     a_aligned = (a // step_length) * step_length
 
-    '''
-    a_aligned = (a // step_length) * step_length
-    first_start_aligned = (range_list[0][0] // step_length) * step_length
-
-    if a_aligned < first_start_aligned:
-        return False, False, -1
-    '''
     for r in range_list:
         aligned_start = (r[0] // step_length) * step_length
         aligned_end = (r[1] // step_length) * step_length
@@ -122,7 +106,7 @@ class Edge:
 
         self.speed_list=[]
         self.travel_time=0
-        self.num_speed=5 #5 to get the mean speed
+        self.num_speed=5 
 
     def update_speed(self,speed):
         if len(self.speed_list)<self.num_speed:
@@ -142,8 +126,6 @@ class Node:
         self.connections = connections
         self.tl_node_list = tl_node_list
 
-        #self.neighbor =[]
-        #self.neighbor_nodes = []
         self.arrivals = {}
         self.arrivals_perlane = {}
         self.arrival_vehicles={}
@@ -171,8 +153,7 @@ class Node:
         self.reward_main_line_avg_speed = 0
         self.reward_main_line_stop = 0
         self.state_main_line_queue = [0,0]
-        #self.state_main_line_stop = [0,0]
-        #self.state_main_line_speed = [0,0]
+
 
 
         self.state_queue = []
@@ -181,7 +162,6 @@ class Node:
         self.state_related_node = []
         self.state_speed = []
 
-        #self.state_outlane_veh_num = []
 
         self.travel_time = 0
         self.waiting_time = 0
@@ -198,30 +178,14 @@ class Node:
         self.record_window=600
 
     def update_arrival_rate(self):
-        # 初始化到达车辆集合
-        #self.arrival_vehicles = {name: {} for name in self.lanes_by_movement.keys()}
+
         self.arrival_vehicles = {name: set() for name in self.lanes_by_movement.keys()}
 
     def record_arrival_rate(self):
         for name in self.lanes_by_movement:
             for lane in self.lanes_by_movement[name]:
                 self.arrival_vehicles[name].add(traci.lane.getLastStepVehicleIDs(lane))
-            '''
-            if name not in self.arrival_vehicles:
-                self.arrival_vehicles[name] = {}
 
-            if self.arrival_vehicles[name]:
-                self.arrival_vehicles[name] = {
-                    veh: ts for veh, ts in self.arrival_vehicles[name].items()
-                    if cur_sec - ts <= self.record_window
-                }
-
-            for lane in self.lanes_by_movement[name]:
-                vehs = traci.lane.getLastStepVehicleIDs(lane)
-                for veh in vehs:
-                    if veh not in self.arrival_vehicles[name]:
-                        self.arrival_vehicles[name][veh] = cur_sec
-            '''
     def update_reward(self):
         queues = []
         vehwaits = []
@@ -248,53 +212,36 @@ class Node:
         self.reward_vehwait = float(np.sum(vehwaits)) if vehwaits else 0.0
 
     def update_high_level_state_and_reward(self):
-        # main_lanes: dict, key=方向名, value=该方向上的 lane 列表
         main_lanes = {dir_: self.lanes_by_movement[dir_] for dir_ in self.two_dir_coord_path_movement}
 
         self.state_main_line_queue = []
-        #self.state_main_line_stop = []
-        #self.state_main_line_speed = []
+
 
         total_speed = []  # 用于 reward
         total_stops = 0
 
         for dir_, lanes in main_lanes.items():
-            #dir_speed = []
-            #dir_stops = 0
+
 
             for lane in lanes:
                 vehs = traci.lane.getLastStepVehicleIDs(lane)
                 running_veh = []
                 for veh in vehs:
                     veh_speed = traci.vehicle.getSpeed(veh)
-                    #dir_speed.append(veh_speed)
                     total_speed.append(veh_speed)
 
                     if veh_speed < 0.1:
-                        # 车辆在上一 step 也是 running_veh 才算 stop
                         if veh in self.last_step_running_veh.get(lane, []):
-                            #dir_stops += 1
                             total_stops += 1
                     else:
                         running_veh.append(veh)
                 self.last_step_running_veh[lane] = running_veh
-            '''
-            # 每个方向的状态值
-            if len(dir_speed) > 0:
-                avg_speed = np.mean(dir_speed)
-            else:
-                avg_speed = traci.lane.getMaxSpeed(lanes[0])
-
-            self.state_main_line_speed.append(avg_speed)
-            self.state_main_line_stop.append(dir_stops)
-            '''
+            
             self.state_main_line_queue.append(sum([traci.lane.getLastStepHaltingNumber(lane) for lane in lanes]))
 
-        # Reward 仍然使用所有主干道车辆的平均速度
         if len(total_speed) > 0:
             self.reward_main_line_avg_speed = np.mean(total_speed)
         else:
-            # 选第一个方向的第一个 lane 的 max speed 作为缺省
             first_dir = list(main_lanes.keys())[0]
             self.reward_main_line_avg_speed = traci.lane.getMaxSpeed(main_lanes[first_dir][0])
 
@@ -306,7 +253,6 @@ class Node:
         self.state_arrival = []
         self.state_speed = []
 
-        #self.state_outlane_veh_num = []
 
         self.travel_time = 0
         self.waiting_time = 0
@@ -314,14 +260,7 @@ class Node:
         self.two_dir_coord_path_travel_time = 0
         self.one_dir_coord_path_waiting_time = 0
         self.two_dir_coord_path_waiting_time = 0
-        '''
-        for name in self.outlanes_by_movement:
-            outlane_veh_num = []
-            for lane in self.outlanes_by_movement[name]:
-                veh_num = traci.lane.getLastStepVehicleNumber(lane)
-                outlane_veh_num.append(veh_num)
-            self.state_outlane_veh_num.append(np.mean(outlane_veh_num))
-        '''
+        
         for name in self.lanes_by_movement:
             arrivals = []
             queues = []
@@ -410,20 +349,7 @@ class Node:
 
         self.prev_phase = cur_phase
         return ''.join(yellow_phase)
-    '''
-    def transfer_to_coord_start(self, range_list):
-        if isinstance(range_list, int):  # ✅ 单个数字（如 42）
-            return self.coordinate_start_time + range_list
-        elif isinstance(range_list, list):
-            if all(isinstance(x, list) and len(x) == 2 for x in range_list):
-                #  区间列表：[[36, 49]]、[[0, 27], [60, 66]]、[[1218, 1221], ...]
-                return [[self.coordinate_start_time + a, self.coordinate_start_time + b] for a, b in range_list]
-            else:
-                # 普通数值列表：[2, 4, 6]（虽然你目前没提到，但也支持）
-                return [self.coordinate_start_time + a for a in range_list]
-        else:
-            raise ValueError("range_list must be an int, a list of ints, or a list of [a, b] pairs.")
-    '''
+    
     def get_phase_saturated_control(self,timing):
 
         in_g_range,if_coordinated_start,g_start = range_check_saturated(timing, self.g_range,self.step_length)
@@ -471,19 +397,7 @@ class Node:
         else:
             phase_names = ['l_barl','branch_s_bars', 'branch_l_barl', 'branch_s_l', 'branch_bars_barl']
             return phase_names
-    '''
-    def isolated_control(self):
-        phase = self.phases.get(self.phase_name)
-        return phase
     
-    
-    def get_phase_list(self,phase_names=None):
-        phases_list = []
-        for name, phase in self.phases.items():
-            if name in phase_names:
-                phases_list.append(phase)
-        return phases_list
-    '''
     def max_weight_phase(self, phase_names=None):
         max_weight = -100000
         max_weight_phase_name = 0
@@ -499,7 +413,6 @@ class Node:
         return max_weight_phase_name
 
     def _calculate_weight(self, phase):
-        # self.saturated_flow=1 #饱和流率，由于所有相位设置同一流率，取1
         controlledlinks = traci.trafficlight.getControlledLinks(self.id)
 
         weight = {}
@@ -576,13 +489,11 @@ class Node:
             dx = to_pos[0] - from_pos[0]
             dy = to_pos[1] - from_pos[1]
 
-            if abs(dx) > abs(dy):  # 是东西方向
+            if abs(dx) > abs(dy):  
                 if dx < 0:
-                    # 东→西方向
                     e_to_w_entry = edge_from
                     e_to_w_exit = edge_to
                 else:
-                    # 西→东方向
                     w_to_e_entry = edge_from
                     w_to_e_exit = edge_to
 
@@ -768,7 +679,6 @@ class Network():
             for i in child:
                 if i.tag != 'phase':
                     continue
-                #筛选
                 state=i.attrib['state']
                 temp=0
                 for p in state:
@@ -781,11 +691,9 @@ class Network():
 
 
     def _init_sim(self):
-        # 访问sumo
-        # sumoBinary = 'sumo-gui'
+
         sumoBinary = 'sumo'
         sumoCmd = [sumoBinary, "-c", self.sumocfg_file]
-        # 如果有种子，则传递种子到 SUMO，否则使用默认的随机性
         if self.seed is not None:
             sumoCmd += ["--seed", str(self.seed)]
             print(f"SUMO started with seed: {self.seed}")
@@ -832,21 +740,6 @@ class Network():
             node.tl_node_list = tl_node_list
 
 
-    '''
-    def get_neighbor_nodes(self, name):
-        tree = ET.parse(self.net_file)
-        root = tree.getroot()
-        neighbor_nodes = []
-
-        # 解析相邻junction的信息
-        for edge in root.findall('edge'):
-            if (edge.get('from') == name and edge.get('to') in self.tl_nodes):
-                neighbor_nodes.append(edge.get('to'))
-            if (edge.get('to') == name and edge.get('from') in self.tl_nodes):
-                neighbor_nodes.append(edge.get('from'))
-
-        return neighbor_nodes
-    '''
 
 
     def _init_connections(self):
@@ -911,13 +804,10 @@ class Network():
                 efrom = data['from']
                 eto = data['to']
 
-                #length = []
                 speed = []
                 for i in child:
                     if i.tag == 'lane':
-                        #length.append(float(i.attrib['length']))
                         speed.append(float(i.attrib['speed']))
-                #length = np.mean(np.array(length))
                 numlane = len(speed)
                 speed = np.mean(np.array(speed))
 
@@ -925,12 +815,7 @@ class Network():
                 topos = self.nodes[eto].position
 
                 length=((frompos[0]-topos[0])**2+(frompos[1]-topos[1])**2)**0.5
-                '''
-                if eto not in self.nodes[efrom].neighbor:
-                    self.nodes[efrom].neighbor.append(eto)
-                if efrom not in self.nodes[eto].neighbor:
-                    self.nodes[eto].neighbor.append(efrom)
-                '''
+                
                 self.edges[id] = Edge(id, efrom=efrom, eto=eto, frompos=frompos, topos=topos, length=length,
                                       numlane=numlane, max_speed=speed)
 
@@ -943,4 +828,5 @@ class Network():
 
     def _terminate(self):
         traci.close()
+
 
