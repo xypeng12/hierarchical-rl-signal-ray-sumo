@@ -1,4 +1,4 @@
-## 📄 Description
+## Description
 This project implements a **hierarchical traffic signal coordination and control framework** for urban corridors, combining **model-based optimization** with **reinforcement learning** in a SUMO–RLlib environment.  
 
 The system has three layers:
