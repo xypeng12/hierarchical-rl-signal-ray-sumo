@@ -1,6 +1,6 @@
 # Hierarchical Multi-Agent Traffic Signal Coordination and Control
 
-## 📄 Description
+## Description
 This project implements a **hierarchical traffic signal control framework** for urban corridors, combining **model-based optimization** and **reinforcement learning** in a SUMO–Ray RLlib environment.
 
 Architecture:
@@ -14,7 +14,7 @@ Training:
 
 ---
 
-## ✨ Features
+## Features
 - Hierarchical multi-agent control
 - Multiple signal coordination strategies (MFC, GWC, PAC)
 - Multi-agent PPO training with RLlib
@@ -22,7 +22,7 @@ Training:
 
 ---
 
-## 📂 Structure
+## Structure
 - **agent_based_control/** – RL controllers (HLC, HSAs)
 - **coordination/** – Model-based coordination (GWC, MFC)
 - **high_demand/** – Heavy traffic configs
@@ -36,7 +36,7 @@ Training:
 
 ---
 
-## 🚦 Usage
+## Usage
 ```bash
 # Train a low-level GWC-aware agent
 python train.py --train-policy low_level_GWC --use-gui
