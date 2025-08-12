@@ -6,7 +6,7 @@ from ray.rllib.core.rl_module.multi_rl_module import MultiRLModuleSpec
 import os
 import argparse
 import warnings
-from utils import generate_spec, policy_mapping_fn#, Highlevel_Callbacks #, Lowlevel_Callbacks
+from utils import generate_spec, policy_mapping_fn
 
 warnings.filterwarnings("ignore", category = DeprecationWarning)
 os.environ["RAY_DEDUP_LOGS_SKIP_REGEX"] = "Retrying in 1 seconds"
@@ -22,14 +22,12 @@ def generate_parser():
         help="Specify which policy to train. Others will be frozen.",
     )
 
-    # 是否使用图形界面
     parser.add_argument(
         "--use-gui",
         action="store_true",
         help="Whether to use SUMO GUI (sumo-gui)."
     )
 
-    # 低层动作持续时间（秒）
     parser.add_argument(
         "--low-level-step-duration-sec",
         type=int,
@@ -37,7 +35,6 @@ def generate_parser():
         help="Duration (in seconds) of each low-level step."
     )
 
-    # 高层决策频率（以低层 step 计数）
     parser.add_argument(
         "--high-level-decision-freq-steps",
         type=int,
@@ -169,17 +166,10 @@ if __name__ == "__main__":
                 os.makedirs(save_dir, exist_ok=True)
                 checkpoint = train.save(save_dir)
 
-        '''
-        # second train
-        checkpoint_path = os.path.abspath(os.path.join("policies", args.train_policy))
-        train.restore(checkpoint_path)
-        for i in range(50, 100):  # 比如之前训练到30轮，现在接着跑
-            result = train.train()
-            print(f"[Iteration {i}]")
-        '''
 
         save_dir = os.path.abspath(os.path.join("policies", args.train_policy))
         os.makedirs(save_dir, exist_ok=True)
         checkpoint = train.save(save_dir)
+
 
         print(f"Checkpoint saved to: {checkpoint.checkpoint.path}")
